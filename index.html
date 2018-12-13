@@ -20,7 +20,18 @@
 </head>
 
 <body>
-
+  <audio id="sound-winner" preload="auto">
+    <source src="sounds/tada.mp3" />
+  </audio>
+  <audio id="sound-drawcard" preload="auto">
+    <source src="sounds/drawcard.mp3" />
+  </audio>
+  <audio id="sound-wrong" preload="auto">
+    <source src="sounds/wrong.mp3" />
+  </audio>
+  <audio id="sound-change-color" preload="auto">
+    <source src="sounds/changecolor.mp3" />
+  </audio>
   <div class="container-fluid">
 
     <!-- Modal für Spielernameneingabe -->
@@ -80,10 +91,10 @@
             <!-- Selector -->
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-            <!--    <label class="input-group-text" for="inputGroupSelect01">Options</label> -->
+                <!--    <label class="input-group-text" for="inputGroupSelect01">Options</label> -->
               </div>
               <select class="custom-select" id="inputGroupSelect01">
-                  <!--   <option selected>Choose...</option> -->
+                <!--   <option selected>Choose...</option> -->
                 <option value="Blue">Blue</option>
                 <option value="Green">Green</option>
                 <option value="Red">Red</option>
@@ -97,128 +108,127 @@
         </div>
       </div>
     </div>
-    <div class="row mt-2">
-      <div class="col">
-        <div class="card">
-          <div class="card-header text-center">
-            <img class="uno-deck-hand" src="pics/uno_hand.svg"></img> <span class="uno-title ml-2 mr-2">four UNO</span> <img class="uno-deck-hand" src="pics/uno_hand.svg"></img>
+
+    <!--Modal für Spielende-->
+    <div id="modal-end-of-game" class="modal" data-backdrop="static" tabindex="-1" role="dialog">
+      <!--data-backdrop="false" unterbindet, dass das Modal durch klick in das Hauptfenster entfert werden kann; mit static ist auch noch der Hintergrund ausgeblendet -->
+      <div class="modal-dialog text-center" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">End of Game</h5>
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="button-restart-game" class="btn btn-success">Restart</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="row mt-2">
-      <div class="col-3">
-        <div class="card">
-          <div class="card-header">
-            <div class="row text-center">
-              <div id="stack" class="col">
-                <img class="mr-2" src="cards/back.svg"></img>
-              </div>
+
+
+    <div class="row mt-2 mb-4">
+      <div class="col">
+        <div class="card-custom-title text-center">
+          <img class="uno-deck-hand" src="pics/uno_hand.svg"></img> <span class="uno-title ml-2 mr-2">four UNO</span> <img class="uno-deck-hand" src="pics/uno_hand.svg"></img>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="stick-to-the-program" class="col-3">
+
+        <div class="card-custom">
+          <div class="row text-center">
+            <div id="stack" class="col">
+              <img class="mr-2 img-fluid" src="cards/back.svg"></img>
             </div>
-            <!--
-            <div class="row text-center">
-              <div id="stack" class="col mt-1 mb-1">
-                <button id="button-draw" class="btn btn-success">Draw Card</button>
-              </div>
-            </div>
-        -->
-            <div class="row text-center">
-              <div id="topcard" class="col mt-2">
-                <!-- Hier wird die Topcard angezeigt
+          </div>
+          <div class="row text-center">
+            <div id="topcard" class="col mt-2">
+              <!-- Hier wird die Topcard angezeigt
                 <img class="mr-2"src="cards/back.svg">zwei-links</img>
               -->
-              </div>
             </div>
           </div>
         </div>
       </div>
 
 
-
-      <div id="player-handcards" class="col">
-        <div class="row-9 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <div class="row">
-                <div class="col">
-                  <button id="button-player-1" type="button" class="btn btn-warning mb-1">
-                    Player 1:
-                  </button>
-                </div>
+      <div id="player-handcards" class="col offset-3">
+        <div class="row-9 mb-1">
+          <div class="card-custom">
+            <div class="row">
+              <div class="col">
+                <button id="playerBadge1" type="button" class="btn btn-warning mb-2">
+                  Player 1:
+                </button>
               </div>
-              <div class="row">
-                <div class="col">
-                  <ul id="handcards1" class="list-inline">
-
-                  </ul>
-                </div>
-              </div>
-
             </div>
-          </div>
-        </div>
-        <div class="row-9 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <div class="row">
-                <div class="col">
-                  <button id="button-player-2" type="button" class="btn btn-warning mb-1">
-                    Player 2:
-                  </button>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <ul id="handcards2" class="list-inline">
+            <div class="row">
+              <div class="col">
+                <ul id="handcards1" class="list-inline">
 
-                  </ul>
-                </div>
+                </ul>
               </div>
             </div>
           </div>
         </div>
-        <div class="row-9 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <div class="row">
-                <div class="col">
-                  <button id="button-player-3" type="button" class="btn btn-warning mb-1">
-                    Player 3:
-                  </button>
-                </div>
+        <div class="row-9 mb-1">
+          <div class="card-custom">
+            <div class="row">
+              <div class="col">
+                <button id="playerBadge2" type="button" class="btn btn-warning mb-2">
+                  Player 2:
+                </button>
               </div>
-              <div class="row">
-                <div class="col">
-                  <ul id="handcards3" class="list-inline">
+            </div>
+            <div class="row">
+              <div class="col">
+                <ul id="handcards2" class="list-inline">
 
-                  </ul>
-                </div>
+                </ul>
               </div>
             </div>
           </div>
         </div>
-        <div class="row-9 mb-2">
-          <div class="card">
-            <div class="card-header">
-              <div class="row">
-                <div class="col">
-                  <button id="button-player-4" type="button" class="btn btn-warning mb-1">
-                    Player 4:
-                  </button>
-                </div>
+        <div class="row-9 mb-1">
+          <div class="card-custom">
+            <div class="row">
+              <div class="col">
+                <button id="playerBadge3" type="button" class="btn btn-warning mb-2">
+                  Player 3:
+                </button>
               </div>
-              <div class="row">
-                <div class="col">
-                  <ul id="handcards4" class="list-inline">
+            </div>
+            <div class="row">
+              <div class="col">
+                <ul id="handcards3" class="list-inline">
 
-                  </ul>
-                </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-9 mb-1">
+          <div class="card-custom">
+            <div class="row">
+              <div class="col">
+                <button id="playerBadge4" type="button" class="btn btn-warning mb-2">
+                  Player 4:
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <ul id="handcards4" class="list-inline">
+
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
