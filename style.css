@@ -1,41 +1,70 @@
+body {
+  //background-color: rgb(0, 77, 0);
+  background-image: url(pics/greenfilth01.jpg);
+}
 
+.img-fluid{
+  max-width: 100%;
+}
 
-.alert{
+.card-custom-title {
+background-color: rgba(230, 230, 255, 0.5) ;
+border-radius: 5px;
+padding: 10px;
+
+}
+
+.card-custom {
+    padding: 5px;
+}
+
+#stick-to-the-program{
+  position: fixed;
+  top: 20%;
+}
+
+#stack>img:hover{
+  transform: scale(1.1, 1.1);
+}
+
+#player-handcards .card-body {
+background-color: rgb(230, 230, 255);
+}
+
+.current-player>.row>.col>ul>li>img:hover{
+  transform: scale(1.1, 1.1);
+}
+.alert {
   font-weight: bold;
   color: red;
 }
-.uno-deck-hand{
+
+.uno-deck-hand {
   height: 80px;
 }
 
-.uno-title{
+/*TODO: funzt noch nicht für winner!!!*/
+.uno-title, #winner-text {
   font-size: 50px;
   font-weight: bold;
   font-family: Comic Sans MS, Comic Sans, cursive;
   color: black;
 
   animation-name: color-changing;
-  animation-duration: 15s;
+  animation-duration: 20s;
   animation-iteration-count: infinite;
 }
 
-img{
-    animation-name: fade-in;
-    animation-duration: 2s;
+.wrong-player>li>img {
+  animation-name: translate-right-left;
+  animation-duration: 2s;
+  animation-delay: 0.25s;
 }
 
-span.badge{
-    animation-name: color-changing;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
+.wrong-card {
+  animation-name: rotate-right-left;
+  animation-duration: 5s;
 }
-
-.winner{
-    background: linear-gradient(to right, rgba(255, 221, 26, 1) , rgba(204, 173, 0, 1));
-}
-
-
-
 .winner-dance-left{
     animation-name: rotate-left-right;
     animation-duration: 10s;
@@ -49,56 +78,29 @@ span.badge{
 
 }
 
-.current-player>.card-body>.row>.col>ul>li>img:hover {
-  transform: scale(1.1, 1.1);
-}
-
-#stack>img:hover {
-  transform: scale(1.1, 1.1);
-}
-
-
-.end-of-game{
-    padding-left: 20px;
-    font-weight: bold;
-    font-size: 50px;
-}
-
-.wrong-player>li>img{
-  animation-name: translate-right-left;
-  animation-duration: 2s;
-  animation-delay: 0.25s;
-}
-
-.wrong-card>li>img{
-  animation-name: rotate-right-left;
-  animation-duration: 3s;
-}
-
-
 /*Überschrift-Animation
 */
-@keyframes color-changing{
-  from{color: #FFCD34;}
+@keyframes color-changing {
+  from {color: black;}
 
-  25%{color: #009A00;}
-  50%{color: #0066CB;}
-  75%{color: #D30035;}
+  20% {color: #FFCD34;}
+  40% {color: #009A00;}
+  60% {color: #0066CB;}
+  80% {color: #D30035;}
 
-  to{color: #FFCD34;}
+  to {color: black;}
 }
 
-@keyframes rotate-right-left{
-  from{transform: rotate(0deg);}
+@keyframes rotate-right-left {
+  from {transform: rotate(0deg);}
 
-  20%{transform: rotate(20deg);}
-  40%{transform: rotate(-20deg);}
-  60%{transform: rotate(20deg);}
-  80%{transform: rotate(-20deg);}
+  20% {transform: rotate(20deg);}
+  40% {transform: rotate(-20deg);}
+  60% {transform: rotate(20deg);}
+  80% {transform: rotate(-20deg);}
 
-  to{transform: rotate(0deg);}
+  to {transform: rotate(0deg);}
 }
-
 @keyframes rotate-left-right{
   from{transform: rotate(0deg);}
 
@@ -110,19 +112,14 @@ span.badge{
   to{transform: rotate(0deg);}
 }
 
-@keyframes translate-right-left{
-  from{transform: translate(0%, 0%);}
 
-  20%{transform: translate(15%, 0%);}
-  40%{transform: translate(-15%, 0%);}
-  60%{transform: translate(15%, 0%);}
-  80%{transform: translate(-15%, 0%);}
+@keyframes translate-right-left {
+  from {transform: translate(0%, 0%);}
 
-  to{transform: translate(0%, 0%);}
-}
+  20% {transform: translate(15%, 0%);}
+  40% {transform: translate(-15%, 0%);}
+  60% {transform: translate(15%, 0%);}
+  80% {transform: translate(-15%, 0%);}
 
-@keyframes fade-in{
-  from{opacity: 0.6;}
-  to{opacity: 1;}
-
+  to {transform: translate(0%, 0%);}
 }
